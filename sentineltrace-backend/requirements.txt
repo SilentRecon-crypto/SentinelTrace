@@ -1,0 +1,31 @@
+# SentinelTrace backend — Stage 2 dependencies.
+#
+# IMPORTANT: numpy / pandas / scikit-learn / joblib are pinned to the EXACT
+# versions recorded in artifacts/model_a/training_metadata.json (the versions
+# actually used to train model_a_v1.pkl in Stage 1). Do not upgrade these
+# without re-verifying the artifact still loads and infers correctly —
+# HistGradientBoostingClassifier pickle compatibility across scikit-learn
+# versions is not guaranteed by scikit-learn itself.
+
+# --- Web framework ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# --- Database ---
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+
+# --- Model A runtime (pinned to Stage 1 training environment) ---
+numpy==2.4.4
+pandas==3.0.2
+scikit-learn==1.8.0
+joblib==1.5.3
+
+# --- Graph engine ---
+networkx==3.4.2
+
+# --- Testing ---
+pytest==8.3.4
+httpx==0.28.1

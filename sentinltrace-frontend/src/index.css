@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SENTINELTRACE DESIGN TOKENS
+   Institutional cybercrime-intelligence system.
+   Dark operational surface, restrained signal-color language.
+   ============================================================ */
+
+@theme {
+  /* --- Surfaces --- */
+  --color-void: #0a0d12;          /* app background */
+  --color-surface: #10141b;       /* panel background */
+  --color-surface-raised: #151a22; /* card background */
+  --color-surface-hover: #1a2029;  /* hover state */
+  --color-border: #212833;         /* hairline border */
+  --color-border-strong: #2c3543;  /* emphasized border */
+
+  /* --- Text --- */
+  --color-text-primary: #e8ecf1;
+  --color-text-secondary: #94a1b3;
+  --color-text-tertiary: #5c6779;
+
+  /* --- Signal palette (status/risk only, not decoration) --- */
+  --color-signal: #2fb8c4;         /* primary cyan-teal accent */
+  --color-signal-dim: #1c6b73;
+  --color-critical: #e5484d;
+  --color-critical-dim: #4a1f21;
+  --color-high: #e8a33d;
+  --color-high-dim: #4a3618;
+  --color-medium: #d6c84a;
+  --color-low: #3fb27f;
+  --color-low-dim: #1c3c2c;
+  --color-info: #5c8fe8;
+
+  /* --- Type --- */
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: local("IBM Plex Sans");
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum" 1, "cv01" 1;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-tertiary); }
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.25s ease-out; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-surface-raised) 25%, var(--color-surface-hover) 37%, var(--color-surface-raised) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* thin numeric tabular rhythm for identifiers */
+.mono-id {
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================
+   LEAFLET — dark operational map theming
+   ============================================================ */
+.leaflet-container {
+  background: var(--color-surface) !important;
+  font-family: var(--font-sans) !important;
+}
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--color-surface-raised) 88%, transparent) !important;
+  color: var(--color-text-tertiary) !important;
+  font-size: 9.5px !important;
+  border-radius: 3px 0 0 0 !important;
+}
+.leaflet-control-attribution a { color: var(--color-text-secondary) !important; }
+.leaflet-tile-pane { filter: saturate(0.85) brightness(0.92); }
+
+.st-map-tooltip {
+  background: var(--color-surface-raised) !important;
+  border: 1px solid var(--color-border-strong) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: 4px !important;
+  padding: 6px 9px !important;
+  font-size: 11px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+}
+.st-map-tooltip::before { display: none !important; }
+
+/* Custom marker */
+.st-marker { position: relative; width: 22px; height: 22px; }
+.st-marker-glow {
+  position: absolute; inset: -5px; border-radius: 9999px;
+  opacity: 0.22; filter: blur(2px);
+}
+.st-marker-pulse {
+  position: absolute; inset: -3px; border-radius: 9999px;
+  border: 1.5px solid; opacity: 0.6;
+  animation: st-marker-pulse 2.4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+@keyframes st-marker-pulse {
+  0% { transform: scale(0.55); opacity: 0.55; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.st-marker-dot {
+  position: absolute; inset: 0; margin: auto; width: 10px; height: 10px;
+  border-radius: 9999px; border: 1.5px solid var(--color-void);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+}
+.st-marker-ring {
+  position: absolute; inset: -6px; border-radius: 9999px;
+  border: 1.5px solid; background: none; opacity: 0; transition: opacity 0.15s ease, inset 0.15s ease;
+}
+.st-marker.is-selected .st-marker-ring { opacity: 0.95; inset: -10px; }
+.st-marker.risk-critical .st-marker-dot,
+.st-marker.risk-critical .st-marker-glow,
+.st-marker.risk-critical .st-marker-pulse { background-color: var(--color-critical); border-color: var(--color-critical); }
+.st-marker.risk-high .st-marker-dot,
+.st-marker.risk-high .st-marker-glow { background-color: var(--color-high); border-color: var(--color-high); }
+.st-marker.risk-medium .st-marker-dot,
+.st-marker.risk-medium .st-marker-glow { background-color: var(--color-medium); border-color: var(--color-medium); }
+.st-marker.risk-low .st-marker-dot,
+.st-marker.risk-low .st-marker-glow { background-color: var(--color-low); border-color: var(--color-low); }
+.st-marker.risk-critical .st-marker-ring { border-color: var(--color-critical); background: none; }
+.st-marker.risk-high .st-marker-ring { border-color: var(--color-high); background: none; }
+.st-marker.risk-medium .st-marker-ring { border-color: var(--color-medium); background: none; }
+.st-marker.risk-low .st-marker-ring { border-color: var(--color-low); background: none; }
+.st-marker.risk-high .st-marker-glow,
+.st-marker.risk-medium .st-marker-glow,
+.st-marker.risk-low .st-marker-glow { display: none; }
+.st-marker-rank {
+  position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+  color: var(--color-text-secondary); white-space: nowrap;
+}

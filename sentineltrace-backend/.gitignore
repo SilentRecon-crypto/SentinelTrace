@@ -1,0 +1,13 @@
+
+# Environment / secrets
+# OS
+# Python
+*.egg-info/
+*.pyc
+*.secret
+.DS_Store
+.env
+.env.local
+.pytest_cache/
+.venv/
+__pycache__/

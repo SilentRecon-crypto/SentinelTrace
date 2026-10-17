@@ -1,0 +1,56 @@
+{
+  "model_version": "model_a_v1",
+  "dataset": "synthetic",
+  "validation_type": "synthetic",
+  "this_run_holdout_metrics": {
+    "source": "recomputed_in_this_training_run",
+    "seed": 42,
+    "n_test_complaints": 128.0,
+    "metrics": {
+      "P_at_1": 0.9609375,
+      "P_at_5": 0.3437500000000001,
+      "Recall_at_5": 0.9765625,
+      "MRR": 0.9791666666666667,
+      "Path_recovery_rate": 0.984375,
+      "n_complaints": 128.0,
+      "FPR": 0.1788699431628218,
+      "ROC_AUC": 0.9853610539219999
+    }
+  },
+  "prior_validation_results": {
+    "label": "PRIOR VALIDATION RESULTS \u2014 NOT NEWLY GENERATED IN THIS STAGE",
+    "source": "prior_research_experiment_not_recomputed_on_demo_data",
+    "reference_document": "SentinelTrace_Experiment2_FINAL_Report.md",
+    "reference_data_files": [
+      "FINAL_multiseed_summary.csv",
+      "FINAL_noise_sweep.csv",
+      "FINAL_hop_stratification.csv",
+      "FINAL_distshift_reference.csv",
+      "FINAL_distshift_result.csv",
+      "FINAL_ablation.csv"
+    ],
+    "headline_8seed_ml_result_mean_std": {
+      "P_at_1": [
+        0.956,
+        0.017
+      ],
+      "P_at_5": [
+        0.352,
+        0.007
+      ],
+      "Recall_at_5": [
+        0.985,
+        0.004
+      ],
+      "MRR": [
+        0.976,
+        0.01
+      ],
+      "FPR": [
+        0.184,
+        0.012
+      ],
+      "note": "Copied verbatim from SentinelTrace_Experiment2_FINAL_Report.md's final comparison table (8 seeds, hardened config). NOT computed in this training run \u2014 shown only as the prior research reference point."
+    }
+  }
+}

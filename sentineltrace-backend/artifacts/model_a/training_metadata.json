@@ -1,0 +1,56 @@
+{
+  "model_version": "model_a_v1",
+  "model_class": "sklearn.ensemble.HistGradientBoostingClassifier",
+  "hyperparameters": {
+    "max_depth": 6,
+    "random_state": 42
+  },
+  "hyperparameters_source": "research_model_a/experiment2_eval.py :: run_all_methods() (verbatim call, not re-declared)",
+  "library_versions": {
+    "python": "3.12.3",
+    "scikit_learn": "1.8.0",
+    "pandas": "3.0.2",
+    "numpy": "2.4.4"
+  },
+  "generator_seed": 42,
+  "generator_function": "research_model_a/generate_graph_v1.py :: generate_world",
+  "generator_config": {
+    "noise_level": "medium",
+    "obscure_amounts": true,
+    "split_prob": 0.35,
+    "missing_hop_prob": 0.15,
+    "adversarial_decoys": true,
+    "n_complaints": 500
+  },
+  "generator_config_source": "final_validation_part1.py :: DEFAULT_KW dict + noise_level='medium' (reused verbatim, not re-tuned). Seed 42 is the first/reference seed in that script's own SEEDS list.",
+  "feature_builder": "research_model_a/experiment2_features.py :: build_candidate_table",
+  "candidate_generation_defaults": {
+    "max_depth": 4,
+    "max_days": 14,
+    "resolution_lag_days": 25,
+    "note": "build_candidate_table()'s own defaults, not overridden."
+  },
+  "train_test_split": {
+    "method": "temporal (day-based)",
+    "split_day": 334,
+    "split_quantile": 0.7,
+    "note": "train = day < split_day, test = day >= split_day \u2014 same discipline used throughout experiment2_eval.py and every final_validation_part*.py script."
+  },
+  "dataset_size": {
+    "n_candidate_rows_total": 10679,
+    "n_complaints_total": 500,
+    "n_train_rows": 7460,
+    "n_test_rows": 3219,
+    "positive_rate_total": 0.06976308643131379,
+    "positive_rate_train": 0.06930294906166219,
+    "positive_rate_test": 0.07082945013979497
+  },
+  "training_timestamp_utc": "2026-09-06T11:45:06.727117+00:00",
+  "artifact_filename": "model_a_v1.pkl",
+  "artifact_contents_note": "Fitted HistGradientBoostingClassifier only \u2014 no training data, no intermediate DataFrames, no other objects are pickled.",
+  "provenance_scripts": [
+    "generate_graph_v1.py",
+    "experiment2_features.py",
+    "experiment2_eval.py"
+  ]
+}
